@@ -1,0 +1,26 @@
+<html>
+<head><title>ViewCVS for windows</title></head>
+<body>
+<h4>Downloads</h4>
+<ul>
+  <li><a href="viewcvs-0.7-win.tar.gz">ViewCVS 0.7 for Windows</a></li>
+  <li><a href="diff.txt">diff.txt</a></li>
+  <li><a href="newfiles.tgz">newfiles.tgz</a></li>
+</ul>  
+<hr>
+<h4>Overview</h4>
+<p>This patch includes some fixes to viewcvs that allow it to run on windows:</p>
+<ul>
+  <li>Changes to the code that parses output from the RCS utilities to work with CRLF line endings.</li>
+  <li>Changes to the install script, configuration parser script, and the scripts which pass filenames to RCS utilities to deal with windows pathnames. Drive letters, names with spaces and backslash separators all caused problems in different places.</li>
+  <li>Changes to the popen code. The existing code used os.fork() which does not exist under windows. If the new code detects windows, it will use an alternate implementation of popen that uses Windows API calls.</li>
+</ul>
+<p>All of these changes were put inside</p>
+<pre>if sys.platform == "win32":</pre>
+<p>statements, so the code should work on normal unix systems, although I haven't tested it.</p>
+<p>Some changes were also neccessary to get the code running under the IIS cgi environment. If the "SERVER_SOFTWARE" environment variable begins with "Microsoft-IIS" then "SCRIPT_NAME" variable will be interpreted differently and redirect URLs will be translated.</p>
+<p>Changes to existing files are included in the patch file diff.txt. There are also some new files in newfiles.tgz, including a readme file for windows users, icon files for non-apache servers, and lib/win32popen.py, which contains the Windows API implementation of popen.</p>
+<p>Diff.txt is based on the latest development version of viewcvs. I put a patched version of viewcvs 0.7 at <a href="http://yahweh.dyndns.org/viewcvs/">http://yahweh.dyndns.org/viewcvs/</a></p>
+<p>- Russ Yanofsky ( rey4@columbia.edu )</p>
+</body>
+</html>
