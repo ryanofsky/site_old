@@ -33,7 +33,7 @@ function reallyRevertCaption()
 }
 
 
--->
+// -->
 </script>
 <p align=center>
 <%=this.link("/Default.aspx", "Home", "media/student.gif", "media/student_glow.gif", 260, 134)%>
@@ -43,4 +43,3 @@ function reallyRevertCaption()
 </p>
 
 <h2 id=caption><%=this.defaultCaption%></h2>
-<p>pagename = <%=this.pageName%></p>
