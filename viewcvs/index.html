@@ -2,15 +2,15 @@
 <head><title>ViewCVS for Windows</title></head>
 <body>
 <h2>ViewCVS 1.0-dev</h2>
-<p>On this page you can download the latest and greatest version of ViewCVS for Windows. Unlike the first release, this one supports all of the ViewCVS features available on unix including CvsGraph diagrams, tarball download links, bonsai commit database queries, regular expression filtering, code highlighting, and use of the viewcvs standalone server.</p>
-<p>The biggest improvement, though, is that ViewCVS can now run under ASP instead of CGI, giving it much better performance. The ASP support is transparent so you can run ASP or CGI or both at once, without any changes to the source code or configuration.</p>
+<p>The Windows and Unix versions of ViewCVS have finally been united! The next official version of ViewCVS will include all of the functionality that was in previous Windows patches. In the meantime, though, I've put up a new release that includes all of the ViewCVS improvements that have been made over the last couple of months, a number of important windows-specific bugfixes, a more comprehensive readme, and support for mod_python for better performance under Apache.</p>
+
 <p>You can send bug reports or questions to me at <a href="mailto:rey4@columbia.edu">rey4@columbia.edu</a>, but please also forward them to the <a href="http://viewcvs.sourceforge.net/#Mail">viewcvs mailing list</a> at <a href="mailto:viewcvs@lyra.org">viewcvs@lyra.org</a> so other people can benefit from the information.</p>
 <p>Thanks,</p>
 <p>Russ Yanofsky</p>
 <h4>Downloads</h4>
 <ul>
-  <li><a href="1.0-dev-r2/viewcvs-1.0.dev-win-r2.zip">ViewCVS 1.0-dev for Windows Release 2</a></li>
-  <li><a href="1.0-dev-r2/README">README</a></li>
+  <li><a href="1.0-dev-r3/viewcvs-1.0.dev-win-r3.zip">ViewCVS 1.0-dev for Windows Release 3</a> (600,194 bytes)</li>
+  <li><a href="1.0-dev-r3/README">README</a> (20,607 bytes)</li>
 </ul>  
 
 <h4>Related Links</h4>
@@ -30,10 +30,24 @@
 
 <h4>Releases</h4>
 <ul>
+  <li><a href="1.0-dev-r3/">ViewCVS 1.0-dev for Windows Release 3</a>, <i>February 18, 2003</i>. Merged with latest development version of ViewCVS, bugfixes for Apache, recent versions of CVSNT, and for the commit database. Added support for mod_python.</li>
   <li><a href="1.0-dev-r2/">ViewCVS 1.0-dev for Windows Release 2</a>, <i>July 8, 2002</i>. Minor bugfixes and updated readme.</li>
   <li><a href="1.0-dev-r1/">ViewCVS 1.0-dev for Windows Release 1</a>, <i>March 06, 2002</i>. Full port of ViewCVS to Windows. New "sapi" module to allow ViewCVS to work under ASP.</li>
   <li><a href="0.7/">ViewCVS 0.7 for Windows</a>, <i>July 22, 2001</i>. Converted ViewCVS code to work with Windows line endings and the IIS CGI environment. No support for checkin database.</li>
 </ul>  
 
+<h4>Thanks</h4>
+<ul>
+  <li>Bryan T. Vold for improving the original ViewCVS patch by adding support for enscript and tarball generation.</li>
+  <li>David Resnick for tracking down the cause of re_search failures in repositories with non-rcs files and for bringing a bug in sapi.AspFile.header() to my attention.</li>
+  <li>Matt Bunch for finding a better way to address the ASP blank page problem, and Keith D. Zimmerman for finding another workaround.</li>
+  <li>Rüdiger Koch for reporting a bug in viewcvs PATH_INFO parsing code with Apache for Windows as well as Jelle Ouwerkerk and Steffen Yount for providing fixes.</li>
+  <li>Nick Minutello and Rüdiger Koch for providing workarounds for setting enscript_library environment variable with apache. David Duminy for providing the first bug report on this.</li>
+  <li>Gyula Faller and Tony Cook for independently coming up with CVSNT loginfo handlers that accept spaces and don't rely on unix-style echo commands. Tony Cook's patch also eliminated the dependency on cat.exe.</li>
+  <li>Mathieu Mazerolle for making the unix loginfo handler handle spaces in filenames</li>
+  <li>Paul Russell for analyzing problems with new fields in CVSNT RCS files. Terry.Ninnis@pgen.com for coming up with a partial solution</li>
+  <li>Bo Berglund for tracking down a case-sensitivity issue that could lead to problems in the commit database and for working with me to finally fix the CVSNT RCS fields problem.</li>
+  <li>Ivo Roessling for finding and fixing a bug in the query page's commit grouping code.</li>
+</ul>  
 </body>
 </html>
