@@ -1,0 +1,193 @@
+<html>
+<head>
+<title>JICA</title>
+
+<style>
+<!--
+  .button { width: 100%; color: white; background-color: brown; border: 0px; FONT-WEIGHT: bold; FONT-SIZE: x-small; CURSOR: hand;  FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; TEXT-DECORATION: none;  }
+  .widget { width: 100% }
+  .label { FONT-SIZE: x-small; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; }
+-->
+</style>
+
+<script language=javascript>
+<!--
+
+function get(id)
+{
+  if (document.getElementById)
+    return document.getElementById(id);
+  else if (document.all)
+    return document.all.item(id);
+  else return null;    
+};
+
+function show(id)
+{
+  var o = get(id);
+  if (o && o.style) o.style.display = "block";
+};
+
+function hide(id)
+{
+  var o = get(id);
+  if (o && o.style) o.style.display = "none";
+};
+
+function makepn(f,ispn)
+{
+  ispn = ispn ? true : false;
+  f.host.disabled = ispn;
+  f.encryption.disabled = ispn;
+  f.compression.disabled = ispn;
+  f.caching.disabled = ispn;
+  f.color.disabled = ispn;
+}
+
+function launch(f)
+{
+  var host = f.host.value;
+  var width = f.width.value|0;
+  var height = f.height.value|0;
+  var color = f.color.options[f.color.selectedIndex].value|0;
+  var platform = f.platform.options[f.platform.selectedIndex].value|0;
+  var encryption = f.encryption.options[f.encryption.selectedIndex].value|0;
+  var compression = f.compression.options[f.compression.selectedIndex].value|0;
+  var caching = f.caching.options[f.caching.selectedIndex].value|0 == 1 ? true : false;
+  var pn = f.startup.options[f.startup.selectedIndex].value == 'pn' ? true : false;
+  var download = f.download.options[f.download.selectedIndex].value == 'manual' ? true : false;
+  var prefix = "applet/";
+  var suffix = platform == 1 ? "M.cab" : platform == 2 ? "N.jar" : "J.jar";
+  var files = download ? prefix + 'JICA-core' + suffix : prefix + 'JICAEng' + suffix;
+  if (pn || encryption > 0) files += ',' + prefix + 'jsafe' + suffix.substr(1);
+  if (download)
+  {
+    if (f.dlaudio.checked) files += ',' + prefix + 'JICA-audio' + suffix;
+    if (f.dlclip.checked) files += ',' + prefix + 'JICA-clipboard' + suffix;
+    if (f.dldrive.checked) files += ',' + prefix + 'JICA-cdm' + suffix;
+    if (f.dlprint.checked) files += ',' + prefix + 'JICA-printer' + suffix;
+    if (f.dlspeed.checked)files += ',' + prefix + 'JICA-zlc' + suffix;
+    if (pn) files += ',' + prefix + 'JICA-pn' + suffix;
+  }
+  
+  var w = window.open("about:blank","_blank","height=" + height + ",width=" + width + ",innerHeight=" + height + ",innerWidth=" + width + ",channelmode=0,dependent=0,directories=0,fullscreen=0,location=0,menubar=0,resizable=1,scrollbars=0,status=1,toolbar=0", false);
+ 
+  var d = w.document;
+  d.open();
+  //d.write('<textarea rows=15 cols=80>');
+  d.write('<head><title>' + host + '</title></head>\n');
+  d.write('<body topmargin=0 leftmargin=0 rightmargin=0 marginwidth=0 marginheight=0>\n');
+  d.write('<applet code="' + (pn ? 'com.citrix.pn.class' : 'com.citrix.JICA.class') + '" width="' + width + '" height="' + height + '" archive="' + files + '">\n');
+  d.write('<param name=cabbase value="' + files + '">\n');
+  d.write('<param name="address" value="' + host + '">\n');
+  d.write('<param name="desiredColor" value="' + color + '">\n');
+  if (encryption > 0)
+  {
+    d.write('<param name="UseDefaultEncryption" value="no">\n');
+    d.write('<param name="EncryptionLevel" value="' + encryption + '">\n');
+  }
+  if (caching)
+  {
+    d.write('<param name="PersistentCacheEnabled" value="yes">\n');
+  }
+  if (compression > 0)
+  {
+    d.write('<param name="compress" value="on">\n');  
+    if (compression > 1)
+      d.write('<param name="maximumcompression" value="on">\n');
+  }
+  d.write('</applet>\n');
+  d.write('</body>');  
+  d.close();
+}
+
+// -->
+</script>
+</head>
+
+<body>
+<form name=f onsubmit="launch(document.forms.f); return false;">
+<table width="100%" height="100%"><tr><td width="100%" height="100%" align=center valign=middle>
+
+<table align=center>
+  <tr>
+    <td colspan=2>
+      <input type=submit value="Launch Session" class=button>
+    </td>
+  </tr>
+  <tr>
+    <td class=label>Host</td>
+    <td><input type=textbox name=host value="yahweh.dyndns.org" class=widget></td>
+  </tr>
+  <tr>
+    <td class=label>Width</td>
+    <td><input type=textbox name=width value=800 class=widget></td>
+  </tr>
+  <tr>
+    <td class=label>Height</td>
+    <td><input type=text name=height value=600 class=widget></td>
+  </tr>
+  <tr>
+    <td class=label>Color Depth</td>
+    <td><select name=color class=widget><option value=2>8-Bit Color</option><option value=4>16-Bit Color</option><option value=8 selected>24-bit Color</option></select></td>
+  </tr>
+  <tr>
+    <td class=label>Platform</td>
+    <td>
+      <select name=platform class=widget>
+<script>
+<!--
+  var auto = (navigator.platform == "Win32" && navigator.appName == "Microsoft Internet Explorer") ? 1 : (navigator.appName == "Netscape") ? 2 : 3;
+  document.write('<option value=1' + (1 == auto ? ' selected' : '') + '>Internet Explorer and Win32</option>');
+  document.write('<option value=2' + (2 == auto ? ' selected' : '') + '>Netscape</option>');
+  document.write('<option value=3' + (3 == auto ? ' selected' : '') + '>Other</option>');
+// -->    
+</script>
+      </select>
+    </td>
+  </tr>  
+  <tr>
+    <td class=label>Encryption</td>
+    <td><select name=encryption><option value=0>No Encryption</option><option value=1>Basic Encryption</option><option value=2>RC5 128-Bit During Authentication Only</option><option value=3>RC5 40-Bit</option><option value=4>RC5 56-Bit</option><option value=5 selected>RC5 128-Bit</option></select>
+    </td>
+  </tr>  
+  <tr>
+    <td class=label>Compression</td>
+    <td><select name=compression class=widget><option value=0>No Compression</option><option value=1>Normal Compression</option><option value=2>High Compression</option></select>
+    </td>
+  </tr>  
+  <tr>
+    <td class=label>Disk Caching</td>
+    <td><select name=caching class=widget><option value=0>Disabled</option><option value=1>Enabled</option></select></td>
+  </tr>  
+  <tr>
+    <td class=label valign=top>Applet Mode</td>
+    <td>
+      <select name=startup class=widget onclick="makepn(this.form, this.options[this.selectedIndex].value == 'pn')"><option value=session>ICA Session</option><option value=pn>Program Neighborhood</option></select>
+    </td>
+  </tr>
+  <tr>
+    <td class=label valign=top>Download</td>
+    <td valign=top>
+      <select name=download onclick="if (this.options[this.selectedIndex].value == 'all') hide('some'); else show('some')" class=widget><option value=all>All Components</option><option value=manual>Some Components (low bandwidth)</option></select>
+      <div id=some class=label>
+        <input name=dlaudio id=dlaudio type=checkbox value=1><label for=dlaudio>Audio Redirection Component</label><br>
+        <input name=dlclip id=dlclip type=checkbox value=1><label for=dlclip>Clipboard Mapping Component</label><br>
+        <input name=dldrive id=dldrive type=checkbox value=1><label for=dldrive>Drive Mapping Component</label><br>
+        <input name=dlprint id=dlprint type=checkbox value=1><label for=dlprint>Printer Mapping Component</label><br>
+        <input name=dlspeed id=dlspeed type=checkbox value=1><label for=dlspeed>SpeedScreen Latency Reduction</label><br>
+      </div>    
+      <script>hide('some');</script>
+    </td>
+  </tr>    
+  <tr>
+    <td colspan=2>
+      <input type=submit value="Launch Session" class=button>
+    </td>
+  </tr>
+</table>
+
+</td></tr></table>
+</form>
+</body>
+</html>
