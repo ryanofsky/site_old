@@ -1,10 +1,10 @@
-DROP TABLE projects;
+DROP TABLE projects CASCADE;
 DROP SEQUENCE project_ids;
-DROP TABLE languages;
+DROP TABLE languages CASCADE;
 DROP SEQUENCE language_ids;
-DROP TABLE project_languages;
+DROP TABLE project_languages CASCADE;
+DROP AGGREGATE comma(TEXT);
 DROP FUNCTION comma_aggregate(TEXT,TEXT);
-DROP AGGREGATE comma TEXT;
 
 CREATE TABLE projects
 (
@@ -12,8 +12,8 @@ CREATE TABLE projects
   name TEXT,
   lines INTEGER,
   cvsmodule TEXT,
-  startdate DATETIME,
-  enddate DATETIME,
+  startdate TIMESTAMP,
+  enddate TIMESTAMP,
   description TEXT
 );
 
@@ -86,7 +86,7 @@ INSERT INTO project_languages (project_id, language_id) VALUES (3,8);
 
 INSERT INTO projects (project_id, name, lines, cvsmodule, startdate, enddate, description)
 VALUES (4, 'My Home Page', 200, 'site', '2002-02-04', NULL,
-'This website, a set of ASP.NET pages backed by a small postgres database running (currently) on win2k. This is the first thing I''ve written with .NET. My initial impressions of it were bad. I spent hours fighting with Visual Studio.NET to get it to compile the site correctly (kept on giving undefined type errors, or type defined multiple-times errors) and to access the web server through a SMB share without throwing cryptic errors, or through frontpage extensions without locking up. Eventually, I just replaced Visual Studio with UltraEdit and GNU Make and things went more smoothly from there. ASP.NET itself seems unnecessarily complex, but it is not hard to learn, and if the object model encourages even VBScripters to write clean code, then it is a good thing.');
+'This website, a set of ASP.NET pages backed by a small postgres database running on win2k.');
 
 INSERT INTO project_languages (project_id, language_id) VALUES (4,2);
 

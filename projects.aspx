@@ -1,4 +1,4 @@
-<%@ Page language="c#" AutoEventWireup="false" Inherits="site.projects" %>
+<%@ Page language="c#" AutoEventWireup="false" Inherits="site.projects" Debug="true" %>
 <%@ Register TagPrefix="prefix" TagName="mrnav" src="navigate.ascx" %>
 <%@ Import Namespace="Microsoft.Data.Odbc" %>
 <%@ Assembly Name = "Microsoft.Data.Odbc" %>
@@ -54,8 +54,8 @@ try
 <%
   OdbcCommand pcmd = getOdbcCommand(@"
     SELECT p.project_id, p.name, p.lines, p.cvsmodule, p.description,
-    (CASE WHEN startdate IS NULL THEN '?' ELSE to_char(startdate,'MM/DD/YYYY') END) || ' - ' ||
-    (CASE WHEN enddate IS NULL THEN '?' ELSE to_char(enddate,'MM/DD/YYYY') END) AS dates,
+    (CASE WHEN p.startdate IS NULL THEN '?' ELSE to_char(p.startdate,'MM/DD/YYYY') END) || ' - ' ||
+    (CASE WHEN p.enddate IS NULL THEN '?' ELSE to_char(p.enddate,'MM/DD/YYYY') END) AS dates,
     comma(l.name) AS langs    
     FROM projects AS p
     INNER JOIN project_languages AS pl USING (project_id)

@@ -150,10 +150,10 @@ Subject: fields are optional and are sent as plaintext.</p>
 
 <?
   if ($HTTP_SERVER_VARS["HTTPS"] != "on")
-    print '<h3><a href="https://yahweh.dyndns.org/pgp.php" style="text-decoration:none"><font color=red>Click here to connect to a secure web server</font></a></h3>';
+    print '<h3><a href="https://russ.hn.org/pgp.php" style="text-decoration:none"><font color=red>Click here to connect to a secure web server</font></a></h3>';
 ?>
 
-<form method=post action="<?= $HTTP_SERVER_VARS["HTTPS"] != "on" ? "https://yahweh.dyndns.org/pgp.php" : "pgp.php"?>">
+<form method=post action="<?= $HTTP_SERVER_VARS["HTTPS"] != "on" ? "https://russ.hn.org/pgp.php" : "pgp.php"?>">
 <table>
 <tr>
   <td><label for=from>From:</label></td>

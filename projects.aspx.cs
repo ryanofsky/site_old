@@ -28,7 +28,7 @@ namespace site
     public void OdbcConnect()
     {
       Debug.Assert(postgres == null);
-      postgres = new OdbcConnection("DSN=site;UID=postgres");
+      postgres = new OdbcConnection("DSN=site");
       postgres.Open();
     }
     
