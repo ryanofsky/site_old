@@ -1,12 +1,10 @@
 <html>
 <head><title>ViewCVS for Windows</title></head>
 <body>
-<h2>ViewCVS 1.0-dev</h2>
-<p>The Windows and Unix versions of ViewCVS have finally been united! The next official version of ViewCVS will include all of the functionality that was in previous Windows patches. In the meantime, though, I've put up a new release that includes all of the ViewCVS improvements that have been made over the last couple of months, a number of important windows-specific bugfixes, a more comprehensive readme, and support for mod_python for better performance under Apache.</p>
+<h2>ViewCVS for Windows</h2>
 
-<p>You can send bug reports or questions to me at <a href="mailto:rey4@columbia.edu">rey4@columbia.edu</a>, but please also forward them to the <a href="http://viewcvs.sourceforge.net/#Mail">viewcvs mailing list</a> at <a href="mailto:viewcvs@lyra.org">viewcvs@lyra.org</a> so other people can benefit from the information.</p>
-<p>Thanks,</p>
-<p>Russ Yanofsky</p>
+<p>ViewCVS is a web application used by developers to browse their favorite CVS repositories. So far there is no official release of ViewCVS that runs on Microsoft Windows, so I've created this page to make unofficial versions that do work more readily available. Recently, the changes needed to support Windows have been integrated into the ViewCVS development sources and the newer downloads here are just snapshots of those sources. If you have questions or need technical support, refer to the <a href="http://viewcvs.sourceforge.net/#Mail">ViewCVS mailing list</a> (or its <a href="news://news.gmane.org/gmane.comp.version-control.cvs.viewcvs.user">NNTP interface</a>).</p>
+
 <h4>Downloads</h4>
 <ul>
   <li><a href="1.0-dev-r4/viewcvs-1.0-dev-r4.zip">ViewCVS 1.0-dev for Windows Release 4</a> (300,289 bytes)</li>
@@ -15,7 +13,7 @@
 
 <h4>Related Links</h4>
 <ul>
-  <li><a href="http://viewcvs.sf.net/">ViewCVS Homepage</a></li>
+  <li><a href="http://viewcvs.sourceforge.net/">ViewCVS Homepage</a></li>
   <li><a href="http://www.cvsnt.org/">CVS-NT</a></li>
   <li><a href="http://www.tortoisecvs.org/">Tortoise CVS</a></li>
   <li><a href="http://www.wincvs.org/">WinCVS</a></li>
@@ -37,7 +35,10 @@
   <li><a href="0.7/">ViewCVS 0.7 for Windows</a>, <i>July 22, 2001</i>. Converted ViewCVS code to work with Windows line endings and the IIS CGI environment. No support for checkin database.</li>
 </ul>  
 
-<h4>Thanks</h4>
+<h4>Credits</h4>
+
+<p>The port of ViewCVS to Windows was done by me (Russ Yanofsky). Credit should also go to the following people for their contributions and useful feedback:</p>
+
 <ul>
   <li>Bryan T. Vold for improving the original ViewCVS patch by adding support for enscript and tarball generation.</li>
   <li>David Resnick for tracking down the cause of re_search failures in repositories with non-rcs files and for bringing a bug in sapi.AspFile.header() to my attention.</li>
