@@ -4,9 +4,16 @@
 <h2>Rvalue references for G++</h2>
 
 <p>Hi, this is a little project page for my attempt to add rvalue
-references to G++. Eventually, I should have a complete patch that
-I'll submit for inclusion in GCC, but for now I'm just working off
-the GCC 4.0.0 sources and tracking my changes in a Subversion
+references to G++. My current implementation includes all the language
+changes described in the rvalue reference proposals except for automatic
+cast to rvalue in return statements (which is just syntactic sugar that
+doesn't prevent rvalue references from providing move semantics or perfect
+forwarding.)</p>
+
+<p>I need to do more testing and hash out some issues with the
+proposal on comp.std.c++, but eventually, I should have a complete patch
+that I'll submit for inclusion in GCC. For now, I'm working off a slightly
+out of date CVS snapshot of GCC and tracking my changes in a Subversion
 repository. The address of the repository and a copy of the latest
 diff are available below.<p>
 
@@ -20,14 +27,14 @@ diff are available below.<p>
 
 <p>If you don't have Subversion, you can get a cached copy of the
 latest diff <a href="diff.txt">here</a> or browse the repository
-with <a href="../vcvs/rref/">ViewCVS</a></p>
+with <a href="../viewvc.py/rref/trunk/">ViewCVS</a></p>
 
 <p>If you do have Subversion, you can check out the sources with</p>
 
 <blockquote><code>svn co http://russ.hn.org/svn/rref/trunk/ rref</code></blockquote>
 <p>or get the latest diff with</p>
 
-<blockquote><code>svn diff http://russ.hn.org/svn/rref/vendor/gcc/4.0.0 http://russ.hn.org/svn/rref/trunk</code></blockquote>
+<blockquote><code>svn diff http://russ.hn.org/svn/rref/vendor/gcc/current http://russ.hn.org/svn/rref/trunk</code></blockquote>
 
 <h3>Links</h3>
 <ul>
